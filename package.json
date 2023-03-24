@@ -2,7 +2,7 @@
   "name": "a1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://keyvanvafaee.github.io/Template",
+  "homepage": "https://keyvanvafaee.github.io/tem2",
   "dependencies": {
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",

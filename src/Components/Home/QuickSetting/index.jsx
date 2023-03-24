@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 //----------------
-import {Offcanvas} from "react-bootstrap";
-import {Send} from "react-bootstrap-icons";
+import {Alert, Button, CloseButton, Offcanvas} from "react-bootstrap";
+import {Send, TicketDetailed} from "react-bootstrap-icons";
 //----------------
 const QuickSetting = ({...props}) =>
 {
@@ -12,20 +12,29 @@ const QuickSetting = ({...props}) =>
     ///------------------
     return(
         <>
-            <div onClick={handleShow} style={{boxShadow : "0rem 0.25rem 1.25rem 0rem rgba(0, 0, 0, 0.14), 0rem 0.4375rem 0.625rem -0.3125rem rgba(64, 64, 64, 0.4)" , borderRadius : "40px" ,position : "fixed" , bottom : 20 , right : 20 , cursor:"pointer" , padding : "15px" , backgroundColor :"#f1f2f6"}}>
+            <div onClick={handleShow}
+
+
+                className={`d-none d-md-block  shadow-2xl border-2 rounded-3xl fixed bottom-10 right-10 cursor-pointer p-3 bg-amber-50 `}
+
+
+            >
+
                 <Send />
             </div>
 
-            <Offcanvas show={show} onHide={handleClose} {...props} >
+
+            <Offcanvas show={show} onHide={handleClose} >
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                    <Offcanvas.Title>Responsive offcanvas</Offcanvas.Title>
+                    <Alert className={`cursor-pointer`} onClick={handleClose} variant="danger"> <TicketDetailed/> </Alert>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    Some text as placeholder. In real life you can have the elements you
-                    have chosen. Like, text, images, lists, etc.
+                    <p>
+                        This is content within an <code>.offcanvas-lg</code>.
+                    </p>
                 </Offcanvas.Body>
             </Offcanvas>
-
 
         </>
     )

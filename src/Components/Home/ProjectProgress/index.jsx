@@ -21,7 +21,7 @@ const ProjectProgress = () =>
         <>
             <Row className={`mt-3`} >
                 <Col md={8} sm={12}  className={`mt-5 justify-center`} >
-                    <Card  className={`rounded-xl  max-w-3xl h-full m-auto`}>
+                    <Card  className={`rounded-xl overflow-x-auto max-w-3xl h-full m-auto`}>
                         <Card.Body>
                            <Card.Text> <b> Project  </b> </Card.Text>
                             <br/>

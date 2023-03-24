@@ -46,7 +46,7 @@ const Index = () =>
                         >
                             <Card
 
-                                className={`mt-10 flex flex-col w-80 h-72 shadow-2xl`}
+                                className={`mt-20 flex flex-col w-80 h-72 shadow-2xl`}
                                 // style={{ marginTop : "40px" ,display : "flex" , flexDirection : "column" ,width : "20rem" , height : "18rem" ,boxShadow : "0rem 0.25rem 1.25rem 0rem rgba(0, 0, 0, 0.14), 0rem 0.4375rem 0.625rem -0.3125rem rgba(64, 64, 64, 0.4)"}}
 
                             >

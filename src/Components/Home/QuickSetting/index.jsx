@@ -12,18 +12,9 @@ const QuickSetting = ({...props}) =>
     ///------------------
     return(
         <>
-            <div onClick={handleShow}
-
-
-                className={`d-none d-md-block  shadow-2xl border-2 rounded-3xl fixed bottom-10 right-10 cursor-pointer p-3 bg-amber-50 `}
-
-
-            >
-
+            <div onClick={handleShow} className={`d-none d-md-block  shadow-2xl border-2 rounded-3xl fixed bottom-10 right-10 cursor-pointer p-3 bg-amber-50 `}>
                 <Send />
             </div>
-
-
             <Offcanvas show={show} onHide={handleClose} >
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Responsive offcanvas</Offcanvas.Title>
@@ -35,9 +26,7 @@ const QuickSetting = ({...props}) =>
                     </p>
                 </Offcanvas.Body>
             </Offcanvas>
-
         </>
     )
 }
-
 export default QuickSetting;

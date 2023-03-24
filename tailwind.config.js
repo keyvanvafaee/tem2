@@ -6,11 +6,11 @@ module.exports = {
 
       colors:{
         'orange' : '#eccc68',
-        "mred"   : '#ff6b6b',
-        "cblack"  : '#222f3e',
-        "morange" : '#feca57',
-        "mblue" : '#0abde3',
-        "mpurple" : '#f368e0'
+        "custom0"   : '#ff6b6b',
+        "custom1"  : '#222f3e',
+        "custom2" : '#feca57',
+        "custom3" : '#0abde3',
+        "custom4" : '#f368e0'
 
       }
     },

@@ -741,7 +741,7 @@ video {
   background-color: rgb(255 251 235 / var(--tw-bg-opacity));
 }
 
-.bg-cblack {
+.bg-custom1 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 47 62 / var(--tw-bg-opacity));
 }
@@ -751,24 +751,9 @@ video {
   background-color: rgb(236 204 104 / var(--tw-bg-opacity));
 }
 
-.bg-mred {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 107 107 / var(--tw-bg-opacity));
-}
-
-.bg-morange {
+.bg-custom2 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 87 / var(--tw-bg-opacity));
-}
-
-.bg-mblue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(10 189 227 / var(--tw-bg-opacity));
-}
-
-.bg-mpurple {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 104 224 / var(--tw-bg-opacity));
 }
 
 .p-2 {
@@ -813,6 +798,16 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
 .opacity-80 {
   opacity: 0.8;
 }
@@ -830,4 +825,32 @@ video {
 .shadow-inherit {
   --tw-shadow-color: inherit;
   --tw-shadow: var(--tw-shadow-colored);
+}
+
+.spin {
+  -webkit-animation: spin 4s infinite linear;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform:rotateY(0deg);
+            transform:rotateY(0deg);
+  }
+
+  to {
+    -webkit-transform:rotateY(360deg);
+            transform:rotateY(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform:rotateY(0deg);
+            transform:rotateY(0deg);
+  }
+
+  to {
+    -webkit-transform:rotateY(360deg);
+            transform:rotateY(360deg);
+  }
 }

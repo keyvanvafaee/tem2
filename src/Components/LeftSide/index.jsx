@@ -41,7 +41,7 @@ const LeftSide = () => {
 
     return(
         <>
-            <Nav  className="d-none d-md-flex flex-column mt-3.5 fixed h-full  bg-cblack w-2/12 rounded-3xl p-2 " variant="pills" defaultActiveKey="link-1" >
+            <Nav  className="d-none d-md-flex flex-column mt-3.5 fixed h-full  bg-custom1 w-2/12 rounded-3xl p-2 " variant="pills" defaultActiveKey="link-1" >
 
 
                 {

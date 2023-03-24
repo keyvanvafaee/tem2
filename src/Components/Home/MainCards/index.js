@@ -1,68 +1,67 @@
-import React, {useState} from "react";
-import {Card, Col, Container, Row} from "react-bootstrap";
-import {Ubuntu, Usb} from "react-bootstrap-icons";
+import React, {useEffect, useState} from "react";
 
+import {Card, Col, Container, Row} from "react-bootstrap";
+
+import axios from "axios";
 
 const MainCards = () =>
 {
+    const [Element , addElement] =  useState({coins : [{}]});
 
-    const [Element , addElement] = useState({
+    useEffect(()=>{
+        axios({
 
-        items : [
-            {
-                name  : "Booking",
-                value : "281",
-                change: "+55%",
-                during: "than last week",
-                bgColor :"mred"
-            },
-            {
-                name  : "Today's Users",
-                value : "2,300",
-                change: "+3%",
-                during: "than last month",
-                bgColor : "morange"
-            },
-            {
-                name  : "Revenue",
-                value : "34k",
-                change: "+1%",
-                during: "than yesterday",
-                bgColor: "mblue"
-            },
-            {
-                name   : "Follower",
-                value  : "+91",
-                change : "0",
-                during :  "Just updated",
-                bgColor: "mpurple"
-            }
-        ]
-    })
+            // Endpoint to send files
+            url: "https://api.coinlore.net/api/tickers/?start=0&limit=4",
+            method: "GET",
+            withCredentials: false,
+            headers: {
 
+                // Add any auth token here
+                'Accept': 'application/json',
+//                 'Content-Type': 'application/x-www-form-urlencoded',
+//                 'Access-Control-Allow-Origin': '*',
+//                 'Access-Control-Allow-Credentials': 'true',
+//                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+//                 'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept',*/
+//                 'X-CoinAPI-Key': "1DA4CD34-23BA-4303-99D4-B317E095B2C8",
+            },
+        })
+
+            // Handle the response from backend here
+            .then((res) => {addElement({ coins : [ ...res.data.data ] } ) })
+
+            // Catch errors if any
+            .catch((err) => { console.log(`Error : ${err}`) });
+
+
+    },[])
 
     return(
-
                 <Row  style={{  marginTop : "40px"}}>
+
                     {
-                        Element.items.map( (item , index) => (
+                        Element.coins.map( (item , index) => (
 
                             <Col xs="12" md="6" lg="3" className={` mt-3 `} >
+
+
                                    <Card
 
                                        className={`shadow-2xl`}>
+
                                        <div
-                                           className={`absolute items-center text-white shadow-inherit  flex justify-center h-8 bg-${item.bgColor} p-4 -mt-5 ml-3.5 rounded-lg`}>
-                                           <Ubuntu/>
+                                           className={`absolute items-center text-white shadow-inherit  flex justify-center h-8 p-4 -mt-5 ml-3.5 rounded-lg`}>
+                                           {item.symbol && (<img className={`spin`} src={require(`./icons/${item.symbol}.png`)}  height={50} width={50}/>) }
                                        </div>
                                        <Card.Header className={`text-right`} >
-                                           {item.name}
+                                           {item.symbol}
                                        </Card.Header>
-                                       <Card.Body>
-                                           <Card.Title style={{textAlign : "right"}}>{item.value}</Card.Title>
+                                       <Card.Body >
+                                           <Card.Text class={`p-3 justify-between flex`}><span>Price</span> <b>{item.price_usd}</b> </Card.Text>
                                            <hr/>
-                                           <Card.Text>
-                                               <b style={{color : "green"}}>{item.change}</b> {' '} {item.during}
+                                           <Card.Text  class={`p-3 justify-between flex`}>
+                                             Last 24h ago  <b className={`${item.percent_change_24 >0 ? 'text-green-600' : 'text-red-600'}`}>{item.percent_change_24h}</b> {' '} {item.during}
                                            </Card.Text>
 
                                        </Card.Body>

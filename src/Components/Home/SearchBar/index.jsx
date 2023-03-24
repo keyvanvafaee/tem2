@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 //-------------
 import {Breadcrumb, Button, Col, Container, FloatingLabel, Form, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 import {Bell, Hammer, House, MenuAppFill, People, Ubuntu} from "react-bootstrap-icons";
+import {Link} from "react-router-dom";
 //-------------
 const SearchBar = () =>
 {
@@ -40,6 +41,7 @@ const SearchBar = () =>
                 <Container style={{marginTop : "20px"}} fluid>
                         <Navbar.Toggle  aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
+
                             <Nav
                                 className="me-auto my-2 my-lg-0"
                                 style={{ maxHeight: '100px' }}
@@ -51,6 +53,13 @@ const SearchBar = () =>
                                         <Breadcrumb.Item active><b> Data </b></Breadcrumb.Item>
                                     </Breadcrumb>
 
+
+                            </Nav>
+                            <Nav className={`d-sm-block d-md-none mt-3 mb-3`}>
+
+                                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                                <Nav.Link as={Link} to="/defi">DeFi</Nav.Link>
+                                <Nav.Link as={Link} to="/blockchain">BlockChain</Nav.Link>
 
                             </Nav>
                             <Nav className="d-sm-flex flex-row ">

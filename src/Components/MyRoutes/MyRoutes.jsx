@@ -6,7 +6,7 @@ import Home from "../Home/Home";
 const MyRoutes = () =>(
         <>
             <Routes>
-                <Route path='/' element={<Home />}></Route>
+                <Route exact={true} path='/' element={<Home />}></Route>
                 <Route path="/Defi" element={<Defi/>}></Route>
             </Routes>
         </>

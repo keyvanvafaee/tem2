@@ -1,16 +1,33 @@
 //-------------
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useReducer, useState} from "react";
 //-------------
-import {Breadcrumb, Button, Col, Container, FloatingLabel, Form, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
-import {Bell, Hammer, House, MenuAppFill, People, Ubuntu} from "react-bootstrap-icons";
+import {
+    Badge,
+    Breadcrumb,
+    Button,
+    Col,
+    Container,
+    FloatingLabel,
+    Form,
+    Nav,
+    Navbar,
+    NavDropdown,
+    Row
+} from "react-bootstrap";
+import {Bell, Hammer, House, MenuAppFill, People, Search, Ubuntu} from "react-bootstrap-icons";
 import {Link} from "react-router-dom";
+import AppContext from "../../../AppContext/AppContext";
+
+import AppReducer from "../../../AppReducers/AppReducer";
 //-------------
 const SearchBar = () =>
 {
+
+    const {state , dispatch} = useContext(AppContext);
     let listener = null;
     ///----------------
     const [scrollState, setScrollState] = useState("top");
-    const [navStyle , setNavStyle] = useState({backgroundColor : "#ffffff" , position : "static" });
+    const [navStyle , setNavStyle] = useState({backgroundColor : "#dfe4ea" , position : "static" });
     ///----------------
     useEffect(() => (
         listener = document.addEventListener("scroll", e => {
@@ -18,10 +35,10 @@ const SearchBar = () =>
             let display = "block";
             window.innerWidth <= 760 ? display = "none" : display = "block";
             if (scrolled >= 60) {
-                 setNavStyle( {display : display ,   position : 'fixed' , width : '81%' , backgroundColor : '#dfe4ea' })
+                 setNavStyle( {display : display ,   position : 'fixed' , width : '81%' , backgroundColor : '#ffffff' })
             } else {
                 if (scrolled ==0) display = "block";
-                  setNavStyle({display : display, position : "static", width : "100%" ,backgroundColor: "#ffffff" })
+                  setNavStyle({display : display, position : "static", width : "100%" ,backgroundColor: "#dfe4ea" })
             }
 
         return () => {
@@ -48,9 +65,10 @@ const SearchBar = () =>
                                 navbarScroll
                             >
                                     <Breadcrumb style={{marginTop : "15px"}}>
-                                        <Breadcrumb.Item ><House/></Breadcrumb.Item>
+                                        <Breadcrumb.Item >Home</Breadcrumb.Item>
                                         <Breadcrumb.Item >Library</Breadcrumb.Item>
-                                        <Breadcrumb.Item active><b> Data </b></Breadcrumb.Item>
+
+                                        <Breadcrumb.Item active><b> {state.lastRoute} </b></Breadcrumb.Item>
                                     </Breadcrumb>
 
 
@@ -66,18 +84,41 @@ const SearchBar = () =>
 
                                     <FloatingLabel controlId="floatingSearch" label="Search Something...">
                                         <Form.Control
+                                            className={`bg-gray-300`}
                                             type="search"
+
                                             placeholder="Search"
-                                            className="me-2"
+
                                             aria-label="Search"
 
                                         />
                                     </FloatingLabel>
 
-                                    <Nav.Link className="p-2"  href="#home"><House /> </Nav.Link>
-                                    <Nav.Link  className="p-2"  href="#cdfd"><People /> </Nav.Link>
-                                    <Nav.Link  className="p-2"  href="#cdfd"><Bell /> </Nav.Link>
+                                    <Nav.Link className="p-2"  href="#home">
+                                        <div className={`relative`}>
 
+                                            <Badge className={`absolute -top-5`} bg="success">3</Badge>
+                                            <People/>
+
+                                        </div>
+                                    </Nav.Link>
+
+                                <Nav.Link className="p-2"  href="#home">
+                                    <div className={`relative`}>
+
+                                        <Badge className={`absolute -top-5`}  bg="primary">2</Badge>
+                                        <Search/>
+
+                                    </div>
+                                </Nav.Link>
+                                <Nav.Link className="p-2"  href="#home">
+                                    <div className={`relative`}>
+
+                                        <Badge className={`absolute -top-5`} bg="warning">9</Badge>
+                                        <People/>
+
+                                    </div>
+                                </Nav.Link>
 
 
                             </Nav>

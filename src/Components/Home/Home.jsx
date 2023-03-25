@@ -18,22 +18,16 @@ import MyRoutes from "../MyRoutes/MyRoutes";
 const Home = () => {
     return (
         <>
-             {/*<Container fluid>*/}
-             {/*  <Row>*/}
-            {/*<Col md={2}>*/}
 
-            {/*    <LeftSide />*/}
-            {/*</Col>*/}
-            {/*<Col md={10} >*/}
+
                 <SearchBar />
                 <MainCards />
-                <PlotCards />
+                <PlotCards/>
                 <ProjectProgress />
                 <Footer />
-            {/*</Col>*/}
-            {/* </Row>*/}
+
             <QuickSetting placement="end" name="end" />
-            {/*</Container>*/}
+
 
         </>
 

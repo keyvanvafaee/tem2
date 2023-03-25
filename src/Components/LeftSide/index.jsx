@@ -1,11 +1,20 @@
-import React, {useState} from "react";
+import React, {useContext, useReducer, useState} from "react";
 //---------------------
 import {Nav} from "react-bootstrap";
 import {MenuApp} from "react-bootstrap-icons";
 import {Link} from "react-router-dom";
+import AppReducer from "../../AppReducers/AppReducer";
+import AppContext from "../../AppContext/AppContext";
 //---------------------
 
+
 const LeftSide = () => {
+
+
+
+
+    const {state , dispatch} = useContext(AppContext);
+
     const [item , addItem] = useState({
         items : [
             {
@@ -41,47 +50,50 @@ const LeftSide = () => {
 
     return(
         <>
-            <Nav  className="d-none d-md-flex flex-column mt-3.5 fixed h-full  bg-custom1 w-2/12 rounded-3xl p-2 " variant="pills" defaultActiveKey="link-1" >
+
+                <Nav  className="d-none d-md-flex flex-column mt-3.5 fixed h-full  bg-custom1 w-2/12 rounded-3xl p-2 " variant="pills" defaultActiveKey="link-1" >
 
 
-                {
-                    item.items.map( (item, index)=> (
-                        <>
-                            {
-                                index === 0 ? <>
-                                        <Nav.Link  as={Link} to={`${item.route}`} className={`text-white mt-2  flex`} >
-                                            <MenuApp/>
-                                            <div className={`pl-2`}>{item.name}</div>
-                                        </Nav.Link>
-                                        <hr className={`text-white`}/> </>
-                                :
-                                index === 5 ?
-                                    <>
-                                        <Nav.Link  as={Link} to={`${item.route}`} className={`text-white mt-2  flex`} eventKey={`${index}`} >
-                                            <MenuApp/>
-                                            <div className={`pl-2`}>{item.name}</div>
-                                        </Nav.Link>
-                                        <Nav.Link as={Link} to="/" className={`flex-grow`}></Nav.Link>
-                                    </>
+                    {
+                        item.items.map( (item, index)=> (
+                            <>
+                                {
+                                    index === 0 ? <>
+                                            <Nav.Link onClick={()=>dispatch({type : "changeS", payload : item.route})} as={Link} to={`${item.route}`} className={`text-white mt-2  flex`} >
+                                                <MenuApp/>
+                                                <div className={`pl-2`}>{item.name}</div>
+                                            </Nav.Link>
+                                            <hr className={`text-white`}/> </>
+                                        :
+                                        index === 5 ?
+                                            <>
+                                                <Nav.Link onClick={()=>dispatch({type : "changeS", payload : item.route})} as={Link} to={`${item.route}`} className={`text-white mt-2  flex`} eventKey={`${index}`} >
+                                                    <MenuApp/>
+                                                    <div className={`pl-2`}>{item.name}</div>
+                                                </Nav.Link>
+                                                <Nav.Link as={Link} to="/" className={`flex-grow`}></Nav.Link>
+                                            </>
 
-                                    :
-                                    <Nav.Link as={Link} to={`${item.route}`} className={`text-white mt-2  flex`} eventKey={`${index}`}>
-                                        <MenuApp/>
-                                        <div className={`pl-2`}>{item.name}</div>
-                                    </Nav.Link>
-                            }
+                                            :
+                                            <Nav.Link onClick={()=>dispatch({type : "changeS", payload : item.route})} as={Link} to={`${item.route}`} className={`text-white mt-2  flex`} eventKey={`${index}`}>
+                                                <MenuApp/>
+                                                <div className={`pl-2`}>{item.name}</div>
+                                            </Nav.Link>
+                                }
 
-                        </>
-                    ))
-                }
-                {/*<Nav.Link as={Link} to="/" className={`text-white flex mt-2`} eventKey="link-1"> <MenuApp/>  Home</Nav.Link>*/}
-                {/*<Nav.Link as={Link} to="/Defi" className={`text-white flex mt-2`} eventKey="link-2"> <MenuApp/>  DeFi</Nav.Link>*/}
-                {/*<Nav.Link as={Link} to="/" className={"text-white flex mt-2"} eventKey="link-3"> <MenuApp/>  Link3</Nav.Link>*/}
-                {/*<Nav.Link as={Link} to="/" className={`text-white flex mt-2`} eventKey="link-4"> <MenuApp/>  Link4</Nav.Link>*/}
-                {/*<Nav.Link as={Link} to="/" className={`text-white flex mt-2`} eventKey="link-5"> <MenuApp/>  Link5</Nav.Link>*/}
-                {/*<Nav.Link as={Link} to="/" className={`flex-grow`}></Nav.Link>*/}
-                {/*<Nav.Link as={Link} to="/" className={`text-white flex mt-2`} eventKey="link-6"><MenuApp/>  Link4</Nav.Link>*/}
-            </Nav>
+                            </>
+                        ))
+                    }
+                    {/*<Nav.Link as={Link} to="/" className={`text-white flex mt-2`} eventKey="link-1"> <MenuApp/>  Home</Nav.Link>*/}
+                    {/*<Nav.Link as={Link} to="/Defi" className={`text-white flex mt-2`} eventKey="link-2"> <MenuApp/>  DeFi</Nav.Link>*/}
+                    {/*<Nav.Link as={Link} to="/" className={"text-white flex mt-2"} eventKey="link-3"> <MenuApp/>  Link3</Nav.Link>*/}
+                    {/*<Nav.Link as={Link} to="/" className={`text-white flex mt-2`} eventKey="link-4"> <MenuApp/>  Link4</Nav.Link>*/}
+                    {/*<Nav.Link as={Link} to="/" className={`text-white flex mt-2`} eventKey="link-5"> <MenuApp/>  Link5</Nav.Link>*/}
+                    {/*<Nav.Link as={Link} to="/" className={`flex-grow`}></Nav.Link>*/}
+                    {/*<Nav.Link as={Link} to="/" className={`text-white flex mt-2`} eventKey="link-6"><MenuApp/>  Link4</Nav.Link>*/}
+                </Nav>
+
+
         </>
     )
 }

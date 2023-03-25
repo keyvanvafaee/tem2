@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Card, Col, Row} from "react-bootstrap";
 import {Grid, Ubuntu} from "react-bootstrap-icons";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 
 import axios from "axios";
 
@@ -9,6 +9,44 @@ const Index = () =>
 {
     const [Element , addElement] =  useState( ["BTC" , "ETH" , "BNB"]);
     const [graphData , setGraphData] = useState([{"BTC" : [] , "ETH" : [] , "BNB" : []}]);
+    const data = [
+        {
+            name: 'month 1',
+            uv: 4000,
+            pv: 2400,
+            amt: 2400,
+        },
+        {
+            name: 'month 2',
+            uv: 3000,
+            pv: 1398,
+            amt: 2210,
+        },
+        {
+            name: 'month 3',
+            uv: 2000,
+            pv: 9800,
+            amt: 2290,
+        },
+        {
+            name: 'month 4',
+            uv: 2780,
+            pv: 3908,
+            amt: 2000,
+        },
+        {
+            name: 'month 5',
+            uv: 1890,
+            pv: 4800,
+            amt: 2181,
+        },
+        {
+            name: 'month 6',
+            uv: 2390,
+            pv: 3800,
+            amt: 2500,
+        },
+    ];
 
     const GenerateGraph = (info, coin) =>
     {
@@ -86,7 +124,7 @@ const Index = () =>
         axios({
             method : "GET",
             url    : `https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_${ele}_USD/latest?period_id=1YRS&limit=7`,
-            headers: {'X-CoinAPI-Key': '1DA4CD34-23BA-4303-99D4-B317E095B2C8'}
+            headers: {'X-CoinAPI-Key': 'F5637781-622E-4372-BA01-04CED34026D3'}
         }).then((res) => GenerateGraph({coins : res.data} , ele)).catch((err) => { console.log(`Error : ${err}`) }),[])
 
 
@@ -94,7 +132,7 @@ const Index = () =>
 
         <>
 
-            <Row className={`mt-5`}  >
+            <Row className={`mt-1`}  >
                 {
                     Element.map( (item , index) => (
                         <Col className={`xs=12 md=3 mt-4 flex justify-center `}>
@@ -106,21 +144,29 @@ const Index = () =>
 
                                         graphData.map(coin=> (
 
-                                            console.log("COIN : ",  coin , "ITEM " , item)
-                                            // <LineChart width={400} height={250} data={coin[item]} margin={{ top: 3, right: 10, bottom: 3, left: 0 }}>
-                                            //     <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-                                            //     {/*<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />*/}
-                                            //     <XAxis dataKey="name" />
-                                            //     <YAxis  />
-                                            //     <Tooltip />
-                                            // </LineChart>
+                                            // console.log("COIN : ",  coin , "ITEM " , item)
+                                            <>
+                                                {/*<ResponsiveContainer width="100%" height="100%">  /!*coin[item]*!/*/}
+                                                    <LineChart width={330} height={280} data={data} margin={{ top: 3, right: 10, bottom: 3, left: 0 }}>
 
-                                    ) )}
+                                                        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                                                        <XAxis dataKey="name" />
+                                                        <YAxis  />
+                                                        <Tooltip />
+                                                        <Legend />
+                                                        <Line type="monotone" dataKey="uv" stroke="#8884d8" activeDot={{ r: 8 }} />
+                                                    </LineChart>
+                                                {/*</ResponsiveContainer>*/}
+                                            </>
+
+
+                                    ) )
+                                    }
 
                                 </div>
                                 <Card.Body className={`flex flex-col`} >
                                     <Card.Text className={`flex-grow`}></Card.Text>
-                                    <Card.Title >BTC PRICE CHART</Card.Title>
+                                    <Card.Title >{item} PRICE CHART</Card.Title>
                                     <hr/>
                                     <Card.Text >
                                         <b className={`text-gray-400 `}> LAST 1 Years ago</b> {' '} {item.during}

@@ -30,11 +30,11 @@ const MainCards = () =>
                     {
                         Element.coins.map( (item , index) => (
                             <Col xs="12" md="6" lg="3" className={` mt-3 `} >
-                                   <Card className={`shadow-2xl`}>
+                                   <Card className={`shadow-2xl rounded-3xl`}>
 
                                        <>
                                             <div
-                                                className={`absolute items-center text-white shadow-inherit  flex justify-center h-8 p-4 -mt-5 ml-3.5 rounded-lg`}>
+                                                className={`absolute items-center text-white shadow-inherit  flex justify-center h-8  -mt-5 ml-3.5 `}>
                                                 {item.symbol && (<img className={`spin`} src={require(`./icons/${item.symbol}.png`)}  height={50} width={50}/>) }
                                             </div>
                                             <Card.Header className={`text-right`} >
@@ -56,9 +56,10 @@ const MainCards = () =>
 
                                                         </div> :
                                                         <>
-                                                            <Card.Text class={`p-3 justify-between flex`}><span>Price</span> <b>{item.price_usd}</b> </Card.Text>
+                                                            <Card.Text class={` flex  justify-between`}><span>Price</span>  <b>{item.price_usd}</b> </Card.Text>
+                                                            <br/>
                                                             <hr/>
-                                                            <Card.Text  class={`p-3 justify-between flex`}>Last 24h ago  <b className={`${item.percent_change_24 >0 ? 'text-green-600' : 'text-red-600'}`}>{item.percent_change_24h}</b> {' '} {item.during}</Card.Text>
+                                                            <Card.Text  class={`justify-between flex`}> value changed  <b className={`${item.percent_change_24 >0 ? 'text-green-600' : 'text-red-600'}`}>{item.percent_change_24h}</b> {' '} {item.during}</Card.Text>
 
                                                         </>
 

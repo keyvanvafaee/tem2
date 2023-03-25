@@ -19,9 +19,9 @@ const ProjectProgress = () =>
 {
     return (
         <>
-            <Row className={`mt-3`} >
+            <Row className={`mt-1`} >
                 <Col md={8} sm={12}  className={`mt-5 justify-center`} >
-                    <Card  className={`rounded-xl overflow-x-auto max-w-3xl h-full m-auto`}>
+                    <Card  className={`rounded-3xl border-0 overflow-x-auto max-w-3xl h-full m-auto`}>
                         <Card.Body>
                            <Card.Text> <b> Project  </b> </Card.Text>
                             <br/>
@@ -139,15 +139,15 @@ const ProjectProgress = () =>
                             <Card.Text>
                                 <span
                                     // style={{display : "inline-flex", backgroundColor : "#eccc68" , padding : "10px" , borderRadius : "30px"}}> <BellFill/>
-                                    className={`inline-flex bg-orange p-2.5  rounded-3xl mt-2 `}>
+                                    className={`inline-flex bg-custom4 p-2.5  rounded-3xl mt-2 `}>
                                         <BellFill/>
-                                </span>   $2400, Design changes
+                                </span>  <b>$2400, Design changes </b>
                             </Card.Text>
 
-                            <Card.Text><span className={`inline-flex bg-orange p-2.5  rounded-3xl mt-2.5 `}> <BellFill/>  </span> $2400, Design changes</Card.Text>
-                            <Card.Text><span className={`inline-flex bg-orange p-2.5  rounded-3xl mt-2.5`}> <BellFill/> </span> $2400, Design changes</Card.Text>
-                            <Card.Text><span className={`inline-flex bg-orange p-2.5  rounded-3xl mt-2.5`}> <BellFill/> </span> $2400, Design changes</Card.Text>
-                            <Card.Text><span className={`inline-flex bg-orange p-2.5  rounded-3xl mt-2.5`}> <BellFill/> </span> $2400, Design changes</Card.Text>
+                            <Card.Text><span className={`inline-flex bg-custom0 p-2.5  rounded-3xl mt-2.5 `}> <BellFill/>  </span> <b>$2400, Design changes </b></Card.Text>
+                            <Card.Text><span className={`inline-flex bg-custom1 p-2.5  rounded-3xl mt-2.5`}> <BellFill/> </span><b>$2400, Design changes </b></Card.Text>
+                            <Card.Text><span className={`inline-flex bg-custom2 p-2.5  rounded-3xl mt-2.5`}> <BellFill/> </span> <b>$2400, Design changes </b></Card.Text>
+                            <Card.Text><span className={`inline-flex bg-custom3 p-2.5  rounded-3xl mt-2.5`}> <BellFill/> </span> <b>$2400, Design changes </b></Card.Text>
 
                         </Card.Body>
                     </Card>

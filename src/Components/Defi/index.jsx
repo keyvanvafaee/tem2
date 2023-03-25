@@ -9,7 +9,7 @@ const Defi = () =>
 
             <SearchBar/>
             <div className={`mt-5`}>
-                <h1> DEFI </h1>
+                <h1> Under Develop </h1>
             </div>
         </>
     )

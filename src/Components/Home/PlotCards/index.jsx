@@ -7,8 +7,8 @@ import axios from "axios";
 
 const Index = () =>
 {
-    const [Element , addElement] =  useState( ["BTC" , "ETC" , "BNB"]);
-    const [graphData , setGraphData] = useState([{}]);
+    const [Element , addElement] =  useState( ["BTC" , "ETH" , "BNB"]);
+    const [graphData , setGraphData] = useState([{"BTC" : [] , "ETH" : [] , "BNB" : []}]);
 
     const GenerateGraph = (info, coin) =>
     {
@@ -36,42 +36,58 @@ const Index = () =>
         })
 
         console.log(merged);
-        setGraphData([
+
+        graphData.map(item=> {
+            if (item[coin] === "BTC")
             {
-                "ETC" : merged,
-                [coin] : merged,
-                "BNB" : merged
+                setGraphData([
+                    {
+                        "ETH" : item.ETC,
+                        "BNB" : item.BNB,
+                        "BTC" : merged,
+
+                    }
+                ]);
+
             }
-        ]);
+            if (item[coin] === "ETH")
+            {
+                setGraphData([
+                    {
+                        "ETH" : merged,
+                        "BNB" : item.BNB,
+                        "BTC" : item.BTC,
+
+                    }
+                ]);
+
+            }
+            if (item[coin] === "BNB")
+            {
+                setGraphData([
+                    {
+                        "ETH" : item.ETC,
+                        "BNB" : merged,
+                        "BTC" : item.BNB,
+
+                    }
+                ]);
+
+            }
+
+        })
+
 
 
 
     }
 
-    useEffect(()=>{
+    Element.map( ele =>
         axios({
-            method: "GET",
-            url: "https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/latest?period_id=1YRS&limit=7",
-            headers: {'X-CoinAPI-Key': 'F5637781-622E-4372-BA01-04CED34026D3'}
-        })
-
-            // Handle the response from backend here
-            .then((res) => {console.log(res.data)
-
-                {
-                    //addElement({coins : res.data});
-                    const info = {coins : res.data};
-                    GenerateGraph(info , "BTC");
-
-                }
-
-            })
-
-            // Catch errors if any
-            .catch((err) => { console.log(`Error : ${err}`) });
-
-
-    },[])
+            method : "GET",
+            url    : `https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_${ele}_USD/latest?period_id=1YRS&limit=7`,
+            headers: {'X-CoinAPI-Key': '1DA4CD34-23BA-4303-99D4-B317E095B2C8'}
+        }).then((res) => GenerateGraph({coins : res.data} , ele)).catch((err) => { console.log(`Error : ${err}`) }),[])
 
 
     return(
@@ -80,8 +96,6 @@ const Index = () =>
 
             <Row className={`mt-5`}  >
                 {
-                    // console.log(graphData.map(item=> console.log(item)))
-
                     Element.map( (item , index) => (
                         <Col className={`xs=12 md=3 mt-4 flex justify-center `}>
                             <Card
@@ -91,13 +105,15 @@ const Index = () =>
                                     {
 
                                         graphData.map(coin=> (
-                                            <LineChart width={400} height={250} data={coin[item]} margin={{ top: 3, right: 10, bottom: 3, left: 0 }}>
-                                                <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-                                                {/*<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />*/}
-                                                <XAxis dataKey="name" />
-                                                <YAxis  />
-                                                <Tooltip />
-                                            </LineChart>
+
+                                            console.log("COIN : ",  coin , "ITEM " , item)
+                                            // <LineChart width={400} height={250} data={coin[item]} margin={{ top: 3, right: 10, bottom: 3, left: 0 }}>
+                                            //     <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                                            //     {/*<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />*/}
+                                            //     <XAxis dataKey="name" />
+                                            //     <YAxis  />
+                                            //     <Tooltip />
+                                            // </LineChart>
 
                                     ) )}
 
